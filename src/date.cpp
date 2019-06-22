@@ -2,6 +2,7 @@
 
 
 Date ParseDate(istream& date_stream) {
+
   bool ok = true;
 
   int year;
@@ -16,7 +17,7 @@ Date ParseDate(istream& date_stream) {
 
   int day;
   ok = ok && (date_stream >> day);
-  ok = ok && date_stream.eof();
+  //ok = ok && date_stream.eof();
 
   if (!ok) {
     throw logic_error("Wrong date format.");
@@ -25,11 +26,43 @@ Date ParseDate(istream& date_stream) {
 }
 
 string Date::GetDate() const{
-    string res;
-    res +=year;
-    res +='-';
-    res +=month;
-    res +='-';
-    res +=day;
-    return res;
+    stringstream ss;
+    ss << setw(4) << setfill('0') << year <<
+              "-" << setw(2) << setfill('0') << month <<
+              "-" << setw(2) << setfill('0') << day;
+    string s;
+    ss >> s;
+    return s;
+}
+ostream& operator<<(ostream& stream, const Date& date) {
+    stream << setw(4) << setfill('0') << date.GetYear() <<
+              "-" << setw(2) << setfill('0') << date.GetMonth() <<
+              "-" << setw(2) << setfill('0') << date.GetDay();
+    return stream;
+}
+bool operator<(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator>(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator==(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator<=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <=
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator>=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >=
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator!=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} !=
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }

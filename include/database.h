@@ -16,13 +16,13 @@ public:
     template <typename Func>
     int RemoveIf(Func predicate){
         int count = 0;
-        for(auto it = storageSet.begin();it!= storageSet.end();++it)
+        for(auto it = storage.begin();it!= storage.end();++it)
         {
-            for(auto &a : it->second)
+            for(auto &a : it->second.second)
             {
                 if(predicate(it->first,a))
                 {
-                    storageSet.erase(it);
+                    storage.erase(it);
                     ++count;
                 }
             }
@@ -33,9 +33,9 @@ public:
     template <typename Func>
     vector<string> FindIf(Func &predicate){
         vector<string> result;
-        for(auto it = storageSet.begin();it!= storageSet.end();++it)
+        for(auto it = storage.begin();it!= storage.end();++it)
         {
-            for(auto &event : it->second)
+            for(auto &event : it->second.second)
             {
                 if(predicate(it->first, event))
                 {
@@ -52,8 +52,7 @@ public:
 
 
 private:
-    map<Date, set<string>> storageSet;
-    map<Date, vector<string>> storageVec;
+    map<Date, pair<vector<string>,set<string>>> storage;
 
 };
 

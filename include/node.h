@@ -20,7 +20,7 @@ enum class Comparison
 struct Node{
 
     virtual bool Evaluate(const Date &d,const string &event) const = 0;
-
+    virtual ~Node() {}
 };
 
 class EmptyNode: public Node {
@@ -48,7 +48,7 @@ private:
 };
 class LogicalOperationNode: public Node  {
 public:
-    LogicalOperationNode(LogicalOperation op, shared_ptr<Node> &left, shared_ptr<Node> &pe): operation_(op),
+    LogicalOperationNode(LogicalOperation op, shared_ptr<Node> left, shared_ptr<Node> pe): operation_(op),
         left_(left), right_(pe){}
     bool Evaluate(const Date& date, const string& event) const override;
 private:
