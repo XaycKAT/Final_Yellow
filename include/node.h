@@ -4,8 +4,8 @@
 #include <memory>
 using namespace std;
 enum LogicalOperation {
-    Or,
-    And
+    And, Or
+
 };
 enum class Comparison
 {

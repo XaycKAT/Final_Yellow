@@ -46,8 +46,28 @@ ostream& operator<<(ostream& stream, const Date& date) {
 }
 
 bool operator<(const Date& lhs, const Date& rhs) {
-  // воспользуемся тем фактом, что векторы уже можно сравнивать на <:
-  // создадим вектор из года, месяца и дня для каждой даты и сравним их
   return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator>(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+bool operator==(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} ==
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator<=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <=
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator>=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >=
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+bool operator!=(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} !=
       vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }

@@ -18,15 +18,14 @@ bool CompareTo(const T& lhs, const T& rhs, Comparison cmp) {
         return lhs > rhs;
     case Comparison::GreaterOrEqual:
         return lhs >= rhs;
-
-
     }
+    return false;
 }
-bool EventComparisonNode::Evaluate(const Date& date, const string& event)const{
+bool EventComparisonNode::Evaluate(const Date& date, const string& event) const{
     return CompareTo(event, event_, cmp_);
 }
 
-bool DateComparisonNode::Evaluate(const Date& date, const string& event)const {
+bool DateComparisonNode::Evaluate(const Date& date, const string& event) const {
     return CompareTo(date, date_, cmp_);
 }
 
