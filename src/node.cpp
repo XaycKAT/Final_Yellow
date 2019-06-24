@@ -9,7 +9,7 @@ bool CompareTo(const T& lhs, const T& rhs, Comparison cmp) {
     case Comparison::Less:
         return lhs < rhs;
     case Comparison::LessOrEqual:
-        return lhs <= rhs;
+        return lhs < rhs || lhs == rhs;
     case Comparison::Equal:
         return lhs == rhs;
     case Comparison::NotEqual:
@@ -17,7 +17,7 @@ bool CompareTo(const T& lhs, const T& rhs, Comparison cmp) {
     case Comparison::Greater:
         return lhs > rhs;
     case Comparison::GreaterOrEqual:
-        return lhs >= rhs;
+        return lhs > rhs || lhs == rhs;
     }
     return false;
 }

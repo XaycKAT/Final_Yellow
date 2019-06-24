@@ -27,7 +27,7 @@ vector<string> Database::FindIf(std::function<bool(Date, string)> predicate) con
     vector<string> result;
     for(auto it = storage.begin();it!= storage.end();++it)
     {
-        for(auto &event : it->second.second)
+        for(auto &event : it->second.first)
         {
             if(predicate(it->first, event))
             {
@@ -44,7 +44,8 @@ void Database::Add(const Date& date, const string& event) {
         auto its = it->second.second.find(event);
         if(its==it->second.second.end())
         {
-            storage[date].first.push_back(event);
+            storage.at(date).first.push_back(event);
+            storage.at(date).second.insert(event);
         }
     }
     else {
