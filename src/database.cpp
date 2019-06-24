@@ -51,7 +51,6 @@ void Database::Add(const Date& date, const string& event) {
         storage[date].second.insert(event);
         storage[date].first.push_back(event);
     }
-
 }
 
 void Database::Print(ostream &os) const {
